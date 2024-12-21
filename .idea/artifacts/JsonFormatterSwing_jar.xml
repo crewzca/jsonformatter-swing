@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JsonFormatterSwing:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JsonFormatterSwing_jar</output-path>
+    <root id="archive" name="JsonFormatterSwing.jar">
+      <element id="module-output" name="JsonFormatterSwing" />
+    </root>
+  </artifact>
+</component>
