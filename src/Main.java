@@ -90,7 +90,10 @@ public class Main {
             }
         }
 
-        copy(json.toString());
+        String jsonCopy = System.getenv("JSON_COPY");
+        if (jsonCopy != null && jsonCopy.equals("ON")) {
+            copy(json.toString());
+        }
 
         return json.toString();
     }
