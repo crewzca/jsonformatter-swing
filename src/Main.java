@@ -90,7 +90,10 @@ public class Main {
             }
         }
 
+        //環境変数「JSON_COPY」を取得
         String jsonCopy = System.getenv("JSON_COPY");
+
+        //環境変数「JSON_COPY」がONであればコピー実行
         if (jsonCopy != null && jsonCopy.equals("ON")) {
             copy(json.toString());
         }
