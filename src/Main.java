@@ -15,11 +15,12 @@ public class Main {
         JScrollPane jsp = new JScrollPane(jta);
 
         JPanel jp = new JPanel();
+        JButton refor = new JButton("1行化");
         JButton clear = new JButton("クリア");
         JButton but = new JButton("フォーマット");
 
         Vector<Integer> vec = new Vector<>();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 17; i++) {
             vec.add(i);
         }
         JComboBox<Integer> jcb = new JComboBox<>(vec);
@@ -42,9 +43,11 @@ public class Main {
             }
         });
 
+        refor.addActionListener(e -> jta.setText(reformat(jta.getText())));
         clear.addActionListener(e -> jta.setText(""));
         but.addActionListener(e -> jta.setText(format(jta.getText(), jcb.getSelectedIndex())));
 
+        jp.add(refor);
         jp.add(clear);
         jp.add(but);
         jp.add(jcb);
@@ -56,8 +59,30 @@ public class Main {
         jf.setVisible(true);
     }
 
-    public static String format(String input, Integer sp) {
+    public static String reformat(String input) {
         input = input.trim().replaceAll("\n", "");
+
+        boolean esc = false;
+
+        StringBuilder json = new StringBuilder();
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c == '\"') {
+                esc = !esc;
+            }
+            if (esc) {
+                json.append(c);
+                continue;
+            }
+            if (c != '\t' && c != ' ') {
+                json.append(c);
+            }
+        }
+        return json.toString();
+    }
+
+    public static String format(String input, Integer sp) {
+        input = reformat(input);
         int lv = 0;
         boolean esc = false;
 
